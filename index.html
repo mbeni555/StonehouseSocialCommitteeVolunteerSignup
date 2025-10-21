@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Committee Volunteer Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .info-section {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 6px;
+        }
+        
+        .info-section h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .info-section p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .info-section ul {
+            margin-left: 20px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .info-section li {
+            margin-bottom: 6px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .required {
+            color: #d32f2f;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .checkbox-item,
+        .radio-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        input[type="checkbox"],
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        
+        .checkbox-label,
+        .radio-label {
+            font-weight: normal;
+            margin: 0;
+            color: #555;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 14px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .reset-btn {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .reset-btn:hover {
+            background: #d0d0d0;
+        }
+        
+        .success-message {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .optional {
+            font-size: 12px;
+            color: #999;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-message" id="successMessage">
+            Thank you! Your information has been submitted. We'll be in touch soon!
+        </div>
+        
+        <form id="volunteerForm">
+            <div class="header">
+                <h1>Join Our Social Committee</h1>
+                <p>Help us bring our community together!</p>
+            </div>
+            
+            <div class="info-section">
+                <h3>About Us</h3>
+                <p>We are a community-focused social committee dedicated to bringing neighbors together and creating meaningful experiences. We organize seasonal events, social gatherings, and community activities that foster connection and belonging.</p>
+            </div>
+            
+            <div class="info-section">
+                <h3>What to Expect</h3>
+                <p>Our committee plans and executes a variety of neighborhood events throughout the year. We welcome members with varying levels of involvement—from planning meetings to hands-on event execution.</p>
+            </div>
+            
+            <div class="info-section">
+                <h3>Meeting Details</h3>
+                <ul>
+                    <li><strong>When:</strong> First Monday of every month</li>
+                    <li><strong>Time:</strong> 6:30 PM</li>
+                    <li><strong>Attendance:</strong> Not mandatory—participate when you can!</li>
+                    <li><strong>Commitment:</strong> Volunteer for at least 1 event per year</li>
+                </ul>
+            </div>
+            
+            <!-- Name -->
+            <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <!-- Event Interests -->
+            <div class="form-group">
+                <label>Which events interest you most?</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="festivals" name="interests" value="Seasonal Festivals">
+                        <label for="festivals" class="checkbox-label">Seasonal Festivals</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="gatherings" name="interests" value="Social Gatherings">
+                        <label for="gatherings" class="checkbox-label">Social Gatherings</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="service" name="interests" value="Community Service">
+                        <label for="service" class="checkbox-label">Community Service Projects</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="planning" name="interests" value="Planning & Organizing">
+                        <label for="planning" class="checkbox-label">Planning & Organizing</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="flexible" name="interests" value="Flexible">
+                        <label for="flexible" class="checkbox-label">I'm Flexible—Surprise Me!</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About You -->
+            <div class="form-group">
+                <label for="about">Tell us about yourself <span class="optional">(optional)</span></label>
+                <textarea id="about" name="about" placeholder="What brings you to our community? Any special skills or interests?"></textarea>
+            </div>
+            
+            <!-- How You Heard -->
+            <div class="form-group">
+                <label>How did you hear about this opportunity?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="heard_festival" name="heard_about" value="Fall Festival" required>
+                        <label for="heard_festival" class="radio-label">Fall Festival</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="heard_flyer" name="heard_about" value="Neighborhood Flyer">
+                        <label for="heard_flyer" class="radio-label">Neighborhood Flyer</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="heard_word" name="heard_about" value="Word of Mouth">
+                        <label for="heard_word" class="radio-label">Word of Mouth</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="heard_other" name="heard_about" value="Other">
+                        <label for="heard_other" class="radio-label">Other</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="button-group">
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="reset" class="reset-btn">Clear</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        // Replace this with your Zapier webhook URL
+        const ZAPIER_WEBHOOK_URL = 'YOUR_ZAPIER_WEBHOOK_URL_HERE';
+        
+        document.getElementById('volunteerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Disable submit button to prevent multiple submissions
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                interests: formData.getAll('interests').join(', '),
+                about: formData.get('about'),
+                heard_about: formData.get('heard_about'),
+                timestamp: new Date().toLocaleString()
+            };
+            
+            try {
+                // Send data to Zapier webhook
+                const response = await fetch(ZAPIER_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 5000);
+                } else {
+                    alert('There was an error submitting your form. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit';
+            }
+        });
+    </script>
+</body>
+</html>
