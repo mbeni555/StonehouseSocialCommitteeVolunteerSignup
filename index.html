@@ -334,6 +334,18 @@
                 <input type="text" id="lastName" name="lastName" required>
             </div>
             
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <!-- Phone -->
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
             <!-- Neighborhood -->
             <div class="form-group">
                 <label>Which neighborhood are you from? <span class="required">*</span></label>
@@ -367,15 +379,6 @@
                         <label for="future" class="radio-label">Future SOF Section</label>
                     </div>
                 </div>
-            </div>
-                <label for="email">Email <span class="required">*</span></label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <!-- Phone -->
-            <div class="form-group">
-                <label for="phone">Phone Number <span class="optional">(optional)</span></label>
-                <input type="tel" id="phone" name="phone">
             </div>
             
             <!-- Event Interests -->
@@ -445,7 +448,7 @@
     
     <script>
         // Replace this with your Google Apps Script deployment URL
-        const GOOGLE_APPS_SCRIPT_URL = 'ttps://script.google.com/macros/s/AKfycbwh9SzAzMqN7ig2ebIJ3T68jDsDZniGJSt_yvwtCV0NHfiQ_dbWIQAg68xjpSlS3rXj/exec';
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwh9SzAzMqN7ig2ebIJ3T68jDsDZniGJSt_yvwtCV0NHfiQ_dbWIQAg68xjpSlS3rXj/exec';
         
         // Show/hide text field when "Other" is selected
         const heardRadios = document.querySelectorAll('input[name="heard_about"]');
