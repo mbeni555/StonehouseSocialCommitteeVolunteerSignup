@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Committee Volunteer Form</title>
+    <title>Stonehouse Social Committee Volunteer Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,86 +13,129 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #8B7355 0%, #A0826D 50%, #6B5D52 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background-attachment: fixed;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(184, 165, 140, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 115, 85, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
         }
         
         .container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            background: linear-gradient(135deg, #FDFBF7 0%, #F5F1ED 100%);
+            border-radius: 8px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            max-width: 650px;
             width: 100%;
-            padding: 50px 40px;
+            padding: 60px 45px;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(184, 165, 140, 0.4);
         }
         
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
+            border-bottom: 3px solid #D4AF37;
+            padding-bottom: 30px;
         }
         
         .header h1 {
-            font-size: 32px;
-            color: #333;
-            margin-bottom: 12px;
+            font-family: 'Cinzel', serif;
+            font-size: 42px;
+            color: #5A4A3A;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+        
+        .header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: #8B7355;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 600;
         }
         
         .header p {
-            color: #666;
+            color: #6B7355;
             font-size: 16px;
             line-height: 1.6;
+            font-style: italic;
+            font-weight: 300;
         }
         
         .info-section {
-            background: #f8f9ff;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(184, 165, 140, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+            border-left: 5px solid #D4AF37;
             border-radius: 6px;
+            padding: 22px;
+            margin-bottom: 28px;
+            box-shadow: inset 0 1px 3px rgba(212, 175, 55, 0.1);
         }
         
         .info-section h3 {
-            color: #333;
+            color: #5A4A3A;
             font-size: 16px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .info-section p {
-            color: #555;
+            color: #6B6B5A;
             font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 8px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            font-weight: 300;
         }
         
         .info-section ul {
             margin-left: 20px;
-            color: #555;
+            color: #6B6B5A;
             font-size: 14px;
         }
         
         .info-section li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            line-height: 1.6;
+            font-weight: 300;
         }
         
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         
         label {
             display: block;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
+            color: #5A4A3A;
+            margin-bottom: 10px;
             font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .required {
-            color: #d32f2f;
+            color: #B8845B;
         }
         
         input[type="text"],
@@ -99,12 +143,14 @@
         input[type="tel"],
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 13px 14px;
+            border: 2px solid #D4C5B0;
+            border-radius: 4px;
             font-size: 14px;
             font-family: inherit;
-            transition: border-color 0.3s;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: #5A4A3A;
         }
         
         input[type="text"]:focus,
@@ -112,120 +158,157 @@
         input[type="tel"]:focus,
         textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #D4AF37;
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15), inset 0 1px 2px rgba(212, 175, 55, 0.1);
         }
         
         textarea {
             resize: vertical;
-            min-height: 80px;
+            min-height: 90px;
+            font-family: inherit;
         }
         
         .checkbox-group,
         .radio-group {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
         
         .checkbox-item,
         .radio-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
         }
         
         input[type="checkbox"],
         input[type="radio"] {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             margin-top: 2px;
             cursor: pointer;
-            accent-color: #667eea;
+            accent-color: #D4AF37;
+            flex-shrink: 0;
         }
         
         .checkbox-label,
         .radio-label {
-            font-weight: normal;
+            font-weight: 400;
             margin: 0;
-            color: #555;
+            color: #6B6B5A;
             font-size: 14px;
             cursor: pointer;
+            padding-top: 2px;
         }
         
         .button-group {
             display: flex;
-            gap: 12px;
-            margin-top: 32px;
+            gap: 14px;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 2px solid #D4C5B0;
         }
         
         button {
             flex: 1;
-            padding: 14px 24px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 15px 24px;
+            font-size: 15px;
+            font-weight: 700;
             border: none;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #D4AF37 0%, #C4991F 100%);
+            color: #FDFBF7;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
         
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+            background: linear-gradient(135deg, #E0B847 0%, #D4AF37 100%);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
         }
         
         .reset-btn {
-            background: #e0e0e0;
-            color: #333;
+            background: #D4C5B0;
+            color: #5A4A3A;
+            box-shadow: 0 2px 8px rgba(212, 197, 176, 0.3);
         }
         
         .reset-btn:hover {
-            background: #d0d0d0;
+            background: #C4B5A0;
+            box-shadow: 0 4px 12px rgba(212, 197, 176, 0.4);
         }
         
         .success-message {
             display: none;
-            background: #4caf50;
+            background: linear-gradient(135deg, #6B8E5F 0%, #5A7D4F 100%);
             color: white;
-            padding: 16px;
+            padding: 18px;
             border-radius: 6px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(107, 142, 95, 0.3);
         }
         
         .optional {
             font-size: 12px;
-            color: #999;
-            font-weight: normal;
+            color: #9B8B7B;
+            font-weight: 400;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 25px;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .header h2 {
+                font-size: 22px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="success-message" id="successMessage">
-            Thank you! Your information has been submitted. We'll be in touch soon!
+            ✓ Thank you! Your information has been submitted. We'll be in touch soon!
         </div>
         
         <form id="volunteerForm">
             <div class="header">
-                <h1>Join Our Social Committee</h1>
-                <p>Help us bring our community together!</p>
+                <h1>STONEHOUSE</h1>
+                <h2>Social Committee</h2>
+                <p>"Bringing our community together, one event at a time."</p>
             </div>
             
             <div class="info-section">
                 <h3>About Us</h3>
-                <p>We are a community-focused social committee dedicated to bringing neighbors together and creating meaningful experiences. We organize seasonal events, social gatherings, and community activities that foster connection and belonging.</p>
+                <p>We are the Stonehouse Owners Foundation Social Committee dedicated to bringing neighbors together and creating meaningful experiences that celebrate what makes our community special. We organize seasonal events, social gatherings, and community activities that help us connect with one another and build a stronger Stonehouse community. Whether you live in Fieldstone Estates, Glen, Townes, Ridge, Manor, Reflections, or one of our future sections, this is your space to share, celebrate, and support your neighbors.</p>
             </div>
             
             <div class="info-section">
                 <h3>What to Expect</h3>
-                <p>Our committee plans and executes a variety of neighborhood events throughout the year. We welcome members with varying levels of involvement—from planning meetings to hands-on event execution.</p>
+                <p>Our committee welcomes neighbors from all SOF communities who want to help plan and execute neighborhood events throughout the year. We welcome members with varying levels of involvement—from planning meetings to hands-on event execution. We're here to help each other and keep things positive and respectful as we build connections together.</p>
             </div>
             
             <div class="info-section">
@@ -321,8 +404,8 @@
     </div>
     
     <script>
-        // Replace this with your Zapier webhook URL
-        const ZAPIER_WEBHOOK_URL = 'YOUR_ZAPIER_WEBHOOK_URL_HERE';
+        // Replace this with your Google Apps Script deployment URL
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwh9SzAzMqN7ig2ebIJ3T68jDsDZniGJSt_yvwtCV0NHfiQ_dbWIQAg68xjpSlS3rXj/exec';
         
         document.getElementById('volunteerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -345,12 +428,9 @@
             };
             
             try {
-                // Send data to Zapier webhook
-                const response = await fetch(ZAPIER_WEBHOOK_URL, {
+                // Send data to Google Apps Script
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
                     body: JSON.stringify(data)
                 });
                 
