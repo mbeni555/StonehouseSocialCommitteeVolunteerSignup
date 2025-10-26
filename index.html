@@ -102,8 +102,8 @@
         
         .info-section p {
             color: #6B6B5A;
-            font-size: 14px;
-            line-height: 1.8;
+            font-size: 15px;
+            line-height: 2;
             margin-bottom: 10px;
             font-weight: 300;
         }
@@ -296,14 +296,14 @@
         
         <form id="volunteerForm">
             <div class="header">
-                <h1>STONEHOUSE</h1>
+                <h1>STONEHOUSE OWNERS FOUNDATION</h1>
                 <h2>Social Committee</h2>
                 <p>"Bringing our community together, one event at a time."</p>
             </div>
             
             <div class="info-section">
                 <h3>About Us</h3>
-                <p>We are the Stonehouse Owners Foundation Social Committee dedicated to bringing neighbors together and creating meaningful experiences that celebrate what makes our community special. We organize seasonal events, social gatherings, and community activities that help us connect with one another and build a stronger Stonehouse community. Whether you live in Fieldstone Estates, Glen, Townes, Ridge, Manor, Reflections, or one of our future sections, this is your space to share, celebrate, and support your neighbors.</p>
+                <p>We are the Stonehouse Owners Foundation (SOF) Social Committee dedicated to bringing neighbors together and creating meaningful experiences that celebrate what makes our community special. We organize seasonal events, social gatherings, and community activities that help us connect with one another and build a stronger Stonehouse community. Whether you live in Fieldstone Estates, Glen, Townes, Ridge, Manor, Reflections, or one of our future sections, this is your space to share, celebrate, and support your neighbors.</p>
             </div>
             
             <div class="info-section">
@@ -321,14 +321,52 @@
                 </ul>
             </div>
             
-            <!-- Name -->
+            <!-- First Name -->
             <div class="form-group">
-                <label for="name">Name <span class="required">*</span></label>
-                <input type="text" id="name" name="name" required>
+                <label for="firstName">First Name <span class="required">*</span></label>
+                <input type="text" id="firstName" name="firstName" required>
             </div>
             
-            <!-- Email -->
+            <!-- Last Name -->
             <div class="form-group">
+                <label for="lastName">Last Name <span class="required">*</span></label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            
+            <!-- Neighborhood -->
+            <div class="form-group">
+                <label>Which neighborhood are you from? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="fieldstone" name="neighborhood" value="Fieldstone Estates" required>
+                        <label for="fieldstone" class="radio-label">Fieldstone Estates</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="glen" name="neighborhood" value="Glen">
+                        <label for="glen" class="radio-label">Glen</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="townes" name="neighborhood" value="Townes">
+                        <label for="townes" class="radio-label">Townes</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="ridge" name="neighborhood" value="Ridge">
+                        <label for="ridge" class="radio-label">Ridge</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="manor" name="neighborhood" value="Manor">
+                        <label for="manor" class="radio-label">Manor</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="reflections" name="neighborhood" value="Reflections">
+                        <label for="reflections" class="radio-label">Reflections</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="future" name="neighborhood" value="Future SOF Section">
+                        <label for="future" class="radio-label">Future SOF Section</label>
+                    </div>
+                </div>
+            </div>
                 <label for="email">Email <span class="required">*</span></label>
                 <input type="email" id="email" name="email" required>
             </div>
@@ -393,6 +431,7 @@
                         <label for="heard_other" class="radio-label">Other</label>
                     </div>
                 </div>
+                <input type="text" id="heard_other_text" name="heard_other_text" placeholder="Please specify" style="display: none; margin-top: 12px;">
             </div>
             
             <!-- Buttons -->
@@ -405,7 +444,22 @@
     
     <script>
         // Replace this with your Google Apps Script deployment URL
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwh9SzAzMqN7ig2ebIJ3T68jDsDZniGJSt_yvwtCV0NHfiQ_dbWIQAg68xjpSlS3rXj/exec';
+        const GOOGLE_APPS_SCRIPT_URL = 'ttps://script.google.com/macros/s/AKfycbwh9SzAzMqN7ig2ebIJ3T68jDsDZniGJSt_yvwtCV0NHfiQ_dbWIQAg68xjpSlS3rXj/exec';
+        
+        // Show/hide text field when "Other" is selected
+        const heardRadios = document.querySelectorAll('input[name="heard_about"]');
+        const heardOtherText = document.getElementById('heard_other_text');
+        
+        heardRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Other') {
+                    heardOtherText.style.display = 'block';
+                } else {
+                    heardOtherText.style.display = 'none';
+                    heardOtherText.value = '';
+                }
+            });
+        });
         
         document.getElementById('volunteerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -417,13 +471,19 @@
             
             // Collect form data
             const formData = new FormData(this);
+            const heardAbout = formData.get('heard_about') === 'Other' 
+                ? formData.get('heard_other_text') 
+                : formData.get('heard_about');
+            
             const data = {
-                name: formData.get('name'),
+                firstName: formData.get('firstName'),
+                lastName: formData.get('lastName'),
                 email: formData.get('email'),
                 phone: formData.get('phone'),
+                neighborhood: formData.get('neighborhood'),
                 interests: formData.getAll('interests').join(', '),
                 about: formData.get('about'),
-                heard_about: formData.get('heard_about'),
+                heard_about: heardAbout,
                 timestamp: new Date().toLocaleString()
             };
             
@@ -440,6 +500,7 @@
                     
                     // Reset form
                     this.reset();
+                    heardOtherText.style.display = 'none';
                     
                     // Hide success message after 5 seconds
                     setTimeout(() => {
